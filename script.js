@@ -358,6 +358,21 @@ function generateBalloonPath( x, y, size ){
 
 var animationComplete = false;  // Variable to track whether the animation has completed
 
+function drawBalloons(cx, cy, size, color) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(cx, cy - size, size, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Balloon string
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx, cy + size);
+    ctx.stroke();
+}
+
 function anim() {
     window.requestAnimationFrame(anim);
 
@@ -383,11 +398,33 @@ function anim() {
 
     if (animationComplete) {
         // Display the Happy Birthday card
-        ctx.fillStyle = '#111';
-        ctx.fillRect(0, 0, w, h);
-        ctx.fillStyle = 'white';
-        ctx.font = '40px Verdana';
-        ctx.fillText('Happy Birthday!', hw - 120, hh);
+        ctx.fillStyle = 'white';  // White rectangle
+        var rectWidth = 500;
+        var rectHeight = 250;
+        var rectX = hw - rectWidth / 2;
+        var rectY = hh - rectHeight / 2;
+
+        ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+
+        // Draw balloons inside the rectangle with different colors
+        drawBalloons(rectX + 100, rectY + 200, 40, '#FF69B4');  // Pink balloon
+        drawBalloons(rectX + 250, rectY + 120, 35, '#1E90FF');  // Blue balloon
+        drawBalloons(rectX + 400, rectY + 180, 30, '#FFD700');  // Gold balloon
+
+        // Draw your extended wishes inside the rectangle
+        ctx.fillStyle = 'black';
+        ctx.font = '18px Verdana';
+        var wishesText = [
+            'Happy Birthday to you!',
+            'May your day be filled with joy, laughter,',
+            'and wonderful surprises.',
+            'Wishing you a fantastic year ahead!',
+            'Best regards,',
+            'Your Name'
+        ];
+        for (var i = 0; i < wishesText.length; i++) {
+            ctx.fillText(wishesText[i], rectX + 20, rectY + 40 + i * 30);
+        }
     }
 }
 
