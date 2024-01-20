@@ -389,7 +389,7 @@ function drawStar(x, y, size) {
 
 function drawStars() {
     // Function to draw random stars in the night sky
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < 25; i++) {
         var x = Math.random() * w;
         var y = Math.random() * h;
         var size = Math.random() * 2 + 1;
