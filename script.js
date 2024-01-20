@@ -433,7 +433,7 @@ function anim() {
         ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
 
         // Draw balloons inside the rectangle with different colors
-        drawBalloons(rectX + 100, rectY + 200, 40, '#FF69B4');  // Pink balloon
+        drawBalloons(rectX + 100, rectY + 200, 40, 'rgba(255, 40, 90, 0.7)');  // Pink balloon
         drawBalloons(rectX + 250, rectY + 120, 35, '#1E90FF');  // Blue balloon
         drawBalloons(rectX + 400, rectY + 180, 30, '#98FB98');  // Light green balloon
 
