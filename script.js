@@ -444,18 +444,18 @@ function anim() {
 
         // Draw your extended wishes inside the rectangle
         ctx.fillStyle = 'black';
-        ctx.font = '18px Verdana';
-        var wishesText = [
-            'Happy Birthday to you!',
-            'May your day be filled with joy, laughter,',
-            'and wonderful surprises.',
-            'Wishing you a fantastic year ahead!',
-            'Best regards,',
-            'Your Name'
-        ];
-        for (var i = 0; i < wishesText.length; i++) {
-            ctx.fillText(wishesText[i], rectX + 20, rectY + 40 + i * 30);
-        }
+		ctx.font = '18px Verdana';
+		var wishesText = [
+			'Happy Birthday to you!',
+			'I\'m glad I met you.',
+			'I know you will achieve all your goals this year,',
+			'especially the one about vegetables! Haha',
+			'Best regards,',
+			'Cristóbal'
+		];
+		for (var i = 0; i < wishesText.length; i++) {
+			ctx.fillText(wishesText[i], rectX + 20, rectY + 40 + i * 30);
+		}
     }
 }
 
