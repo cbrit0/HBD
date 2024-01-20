@@ -356,28 +356,39 @@ function generateBalloonPath( x, y, size ){
 									   x,            y );
 }
 
-function anim(){
-	
-	window.requestAnimationFrame( anim );
-	
-	ctx.fillStyle = '#111';
-	ctx.fillRect( 0, 0, w, h );
-	
-	ctx.translate( hw, hh );
-	
-	var done = true;
-	for( var l = 0; l < letters.length; ++l ){
-		
-		letters[ l ].step();
-		if( letters[ l ].phase !== 'done' )
-			done = false;
-	}
-	
-	ctx.translate( -hw, -hh );
-	
-	if( done )
-		for( var l = 0; l < letters.length; ++l )
-			letters[ l ].reset();
+var animationComplete = false;  // Variable to track whether the animation has completed
+
+function anim() {
+    window.requestAnimationFrame(anim);
+
+    ctx.fillStyle = '#111';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.translate(hw, hh);
+
+    var done = true;
+    for (var l = 0; l < letters.length; ++l) {
+        letters[l].step();
+        if (letters[l].phase !== 'done') {
+            done = false;
+        }
+    }
+
+    ctx.translate(-hw, -hh);
+
+    if (done && !animationComplete) {
+        // Animation has completed for the first time
+        animationComplete = true;
+    }
+
+    if (animationComplete) {
+        // Display the Happy Birthday card
+        ctx.fillStyle = '#111';
+        ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = 'white';
+        ctx.font = '40px Verdana';
+        ctx.fillText('Happy Birthday!', hw - 120, hh);
+    }
 }
 
 for( var i = 0; i < opts.strings.length; ++i ){
