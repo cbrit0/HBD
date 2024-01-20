@@ -373,11 +373,37 @@ function drawBalloons(cx, cy, size, color) {
     ctx.stroke();
 }
 
+function drawStar(x, y, size) {
+    // Function to draw a star at a given position and size
+    ctx.fillStyle = '#FFD700';  // Gold color for stars
+    ctx.beginPath();
+    for (var i = 0; i < 5; i++) {
+        var angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+        var sx = x + Math.cos(angle) * size;
+        var sy = y + Math.sin(angle) * size;
+        ctx.lineTo(sx, sy);
+    }
+    ctx.closePath();
+    ctx.fill();
+}
+
+function drawStars() {
+    // Function to draw random stars in the night sky
+    for (var i = 0; i < 50; i++) {
+        var x = Math.random() * w;
+        var y = Math.random() * h;
+        var size = Math.random() * 2 + 1;
+        drawStar(x, y, size);
+    }
+}
+
 function anim() {
     window.requestAnimationFrame(anim);
 
-    ctx.fillStyle = '#111';
+    ctx.fillStyle = '#001F3F';
     ctx.fillRect(0, 0, w, h);
+
+    drawStars();
 
     ctx.translate(hw, hh);
 
@@ -409,7 +435,12 @@ function anim() {
         // Draw balloons inside the rectangle with different colors
         drawBalloons(rectX + 100, rectY + 200, 40, '#FF69B4');  // Pink balloon
         drawBalloons(rectX + 250, rectY + 120, 35, '#1E90FF');  // Blue balloon
-        drawBalloons(rectX + 400, rectY + 180, 30, '#FFD700');  // Gold balloon
+        drawBalloons(rectX + 400, rectY + 180, 30, '#98FB98');  // Light green balloon
+
+        // Draw stars inside the rectangle
+        drawStar(rectX + 150, rectY + 80, 8);
+        drawStar(rectX + 320, rectY + 200, 10);
+        drawStar(rectX + 450, rectY + 120, 8);
 
         // Draw your extended wishes inside the rectangle
         ctx.fillStyle = 'black';
